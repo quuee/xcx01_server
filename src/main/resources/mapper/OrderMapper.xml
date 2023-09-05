@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.xcx01_server.mapper.OrderMapper">
+
+    <resultMap id="orderMap" type="com.xxx.xcx01_server.entity.OrderEntity">
+        <id column="order_no" property="orderNo" />
+        <result column="order_status" property="orderStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="pay_money" property="payMoney"/>
+        <result column="revice_address" property="reviceAddress"/>
+        <result column="express_company" property="expressCompany"/>
+        <result column="express_no" property="expressNo"/>
+        <result column="pay_way" property="payWay"/>
+    </resultMap>
+
+    <select id="selectOrderPageList" resultMap="orderMap">
+        SELECT
+            DISTINCT (to2.order_no) order_no ,
+            to2.create_time ,
+            to2.pay_money ,
+            to2.revice_address ,
+            to2.express_company ,
+            to2.express_no ,
+            to2.pay_way ,
+            to2.order_status
+        from
+            t_order to2
+            inner join t_order_goods tog on
+            to2.order_no = tog.order_no
+        <where>
+            <if test="orderStatus!=null and orderStatus!=0">
+                AND to2.order_status = #{orderStatus}
+            </if>
+            <if test="goodsName!=null and orderStatus!=''">
+                AND tog.goods_name like CONCAT('%',#{goodsName},'%')
+            </if>
+
+        </where>
+
+        order by to2.create_time desc
+    </select>
+
+
+
+</mapper>

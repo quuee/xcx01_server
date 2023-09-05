@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.xcx01_server.mapper.GoodsMapper">
+
+    <resultMap id="goodsDetail" type="com.xxx.xcx01_server.entity.GoodsEntity">
+        <id column="id" property="id" />
+        <result column="goods_name" property="goodsName"/>
+        <result column="price" property="price"/>
+        <result column="stock" property="stock"/>
+        <result column="goods_image" property="goodsImage"/>
+        <result column="hot" property="hot"/>
+        <result column="hot_time" property="hotTime"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="goods_introduce_page" property="goodsIntroducePage"/>
+        <result column="label_id" property="labelId"/>
+        <result column="sale_num" property="saleNum"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="label" property="label"/>
+    </resultMap>
+
+    <select id="selectDetailById" resultMap="goodsDetail">
+        SELECT
+            tg.id,
+            tg.goods_name ,
+            tg.price ,
+            tg.stock ,
+            tg.goods_image ,
+            tg.hot ,
+            tg.hot_time  ,
+            tg.category_id  ,
+            tg.goods_introduce_page  ,
+            tg.label_id  ,
+            tg.sale_num  ,
+            tc.name category_name,
+            tl.`label`
+        FROM
+            t_goods tg
+            left join t_category tc on
+            tg.category_id = tc.id
+            left join t_label tl on
+            tg.label_id = tl.id
+        where tg.id = #{id}
+    </select>
+
+    <select id="selectDetailByCategoryId" resultMap="goodsDetail">
+        SELECT
+            tg.id,
+            tg.goods_name ,
+            tg.price ,
+            tg.stock ,
+            tg.goods_image ,
+            tg.hot ,
+            tg.hot_time  ,
+            tg.category_id  ,
+            tg.goods_introduce_page  ,
+            tg.label_id  ,
+            tg.sale_num  ,
+            tc.name category_name,
+            tl.`label`
+        FROM
+            t_goods tg
+            left join t_category tc on
+            tg.category_id = tc.id
+            left join t_label tl on
+            tg.label_id = tl.id
+        where tg.category_id = #{categoryId}
+    </select>
+
+</mapper>
