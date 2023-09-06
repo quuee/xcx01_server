@@ -46,8 +46,8 @@ mybatis-plus:
 
 wx:
   jscode2session_url: https://api.weixin.qq.com/sns/jscode2session
-  appid: wx736f2ce46f1621e5
-  secret: 9acdec9971a39e21bf20027cbd3d61e5
+  appid: 
+  secret: 
   grant_type: authorization_code
 
 
