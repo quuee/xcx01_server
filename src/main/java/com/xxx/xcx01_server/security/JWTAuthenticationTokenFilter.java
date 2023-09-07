@@ -6,9 +6,12 @@ import com.nimbusds.jose.shaded.gson.internal.LinkedTreeMap;
 import com.xxx.xcx01_server.common.exception.ErrorCode;
 import com.xxx.xcx01_server.common.exception.ServerException;
 import com.xxx.xcx01_server.common.utils.JWTUtil;
-import com.xxx.xcx01_server.entity.PayloadDTO;
 import com.xxx.xcx01_server.entity.UserEntity;
 import com.xxx.xcx01_server.service.UserService;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +19,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 

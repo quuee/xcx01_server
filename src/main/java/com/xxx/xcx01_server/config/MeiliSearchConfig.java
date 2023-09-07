@@ -15,7 +15,7 @@ public class MeiliSearchConfig {
     @Bean
     public Index index() throws MeilisearchException {
 
-        Client client = new Client(new Config("http://192.168.2.13:7700", "123456"));
+        Client client = new Client(new Config("http://127.0.0.1:7700", "123456"));
 
         TaskInfo taskInfo = client.createIndex("goods", "id");
         String indexUid = taskInfo.getIndexUid();
