@@ -25,8 +25,9 @@ public class WXAppletAuthenticationFilter extends AbstractAuthenticationProcessi
 
     private WXUtil wxUtil;
 
+    private static final String defaultFilterProcessesUrl="/user/login";
 
-    public WXAppletAuthenticationFilter(String defaultFilterProcessesUrl) {
+    public WXAppletAuthenticationFilter() {
         super(defaultFilterProcessesUrl);
     }
 
